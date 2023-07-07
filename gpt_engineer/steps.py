@@ -293,7 +293,7 @@ STEPS = {
         gen_clarified_code,
         gen_entrypoint,
         execute_entrypoint,
-        human_review,
+        # human_review,
     ],
     Config.BENCHMARK: [simple_gen, gen_entrypoint],
     Config.SIMPLE: [simple_gen, gen_entrypoint, execute_entrypoint],
@@ -303,7 +303,7 @@ STEPS = {
         gen_code,
         gen_entrypoint,
         execute_entrypoint,
-        human_review,
+        # human_review,
     ],
     Config.TDD_PLUS: [
         gen_spec,
@@ -312,14 +312,14 @@ STEPS = {
         fix_code,
         gen_entrypoint,
         execute_entrypoint,
-        human_review,
+        # human_review,
     ],
     Config.CLARIFY: [
         clarify,
         gen_clarified_code,
         gen_entrypoint,
         execute_entrypoint,
-        human_review,
+        # human_review,
     ],
     Config.RESPEC: [
         gen_spec,
@@ -329,11 +329,19 @@ STEPS = {
         fix_code,
         gen_entrypoint,
         execute_entrypoint,
-        human_review,
+        # human_review,
     ],
-    Config.USE_FEEDBACK: [use_feedback, gen_entrypoint, execute_entrypoint, human_review],
+    Config.USE_FEEDBACK: [
+        use_feedback, 
+        gen_entrypoint, 
+        execute_entrypoint, 
+        # human_review,
+    ],
     Config.EXECUTE_ONLY: [execute_entrypoint],
-    Config.EVALUATE: [execute_entrypoint, human_review],
+    Config.EVALUATE: [
+        execute_entrypoint, 
+        # human_review,
+    ],
 }
 
 # Future steps that can be added:
