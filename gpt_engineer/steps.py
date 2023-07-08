@@ -68,7 +68,8 @@ def clarify(ai: AI, dbs: DBs) -> List[dict]:
             break
 
         print()
-        user_input = input('[[[.ASK]]]answer in text, or "c" to move on\n[[[.ENDASK]]]')
+        last = messages[-1]["content"]
+        user_input = input(f'[[[.ASK]]]{last}\nanswer in text, or "c" to move on\n[[[.ENDASK]]]')
         print()
 
         if not user_input or user_input == "c":
