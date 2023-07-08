@@ -21,11 +21,11 @@ from gpt_engineer.learning import Learning, extract_learning
 #     )
 
 
-def collect_learnings(model: str, temperature: float, steps: List[Step], dbs: DBs):
-    learnings = extract_learning(
-        model, temperature, steps, dbs, steps_file_hash=steps_file_hash()
-    )
-    send_learning(learnings)
+# def collect_learnings(model: str, temperature: float, steps: List[Step], dbs: DBs):
+#     learnings = extract_learning(
+#         model, temperature, steps, dbs, steps_file_hash=steps_file_hash()
+#     )
+#     send_learning(learnings)
 
 
 def steps_file_hash():

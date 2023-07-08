@@ -64,15 +64,15 @@ def clarify(ai: AI, dbs: DBs) -> List[dict]:
             break
 
         if messages[-1]["content"].strip().lower().startswith("no"):
-            print("Nothing more to clarify.")
+            print("[[[.INFO]]]Nothing more to clarify.[[[.ENDINFO]]]")
             break
 
         print()
-        user_input = input('(answer in text, or "c" to move on)\n')
+        user_input = input('[[[.ASK]]]answer in text, or "c" to move on\n[[[.ENDASK]]]')
         print()
 
         if not user_input or user_input == "c":
-            print("(letting gpt-engineer make its own assumptions)")
+            print("[[[.INFO]]]alright, I'll make my own assumptions[[[.ENDINFO]]]")
             print()
             messages = ai.next(
                 messages,
@@ -176,6 +176,8 @@ def gen_code(ai: AI, dbs: DBs) -> List[dict]:
     to_files(messages[-1]["content"], dbs.workspace)
     return messages
 
+def print_end():
+    print("[[[.FINALEND]]]")
 
 def execute_entrypoint(ai: AI, dbs: DBs) -> List[dict]:
     command = dbs.workspace["run.sh"]
@@ -292,7 +294,8 @@ STEPS = {
         clarify,
         gen_clarified_code,
         gen_entrypoint,
-        execute_entrypoint,
+        print_end,
+        # execute_entrypoint,
         # human_review,
     ],
     Config.BENCHMARK: [simple_gen, gen_entrypoint],

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import logging
+# import logging
 
 from dataclasses import dataclass
 from typing import Dict, List
@@ -8,7 +8,7 @@ from typing import Dict, List
 import openai
 import tiktoken
 
-logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -36,11 +36,11 @@ class AI:
         try:
             self.tokenizer = tiktoken.encoding_for_model(model)
         except KeyError:
-            logger.debug(
-                f"Tiktoken encoder for model {model} not found. Using "
-                "cl100k_base encoder instead. The results may therefore be "
-                "inaccurate and should only be used as estimate."
-            )
+            # logger.debug(
+            #     f"Tiktoken encoder for model {model} not found. Using "
+            #     "cl100k_base encoder instead. The results may therefore be "
+            #     "inaccurate and should only be used as estimate."
+            # )
             self.tokenizer = tiktoken.get_encoding("cl100k_base")
 
     def start(self, system, user, step_name):
@@ -64,7 +64,7 @@ class AI:
         if prompt:
             messages += [{"role": "user", "content": prompt}]
 
-        logger.debug(f"Creating a new chat completion: {messages}")
+        # logger.debug(f"Creating a new chat completion: {messages}")
         response = openai.ChatCompletion.create(
             messages=messages,
             stream=True,
@@ -80,7 +80,7 @@ class AI:
             chat.append(msg)
         print()
         messages += [{"role": "assistant", "content": "".join(chat)}]
-        logger.debug(f"Chat completion finished: {messages}")
+        # logger.debug(f"Chat completion finished: {messages}")
 
         self.update_token_usage_log(
             messages=messages, answer="".join(chat), step_name=step_name
@@ -147,8 +147,6 @@ def fallback_model(model: str) -> str:
         return model
     except openai.InvalidRequestError:
         print(
-            f"Model {model} not available for provided API key. Reverting "
-            "to gpt-3.5-turbo. Sign up for the GPT-4 wait list here: "
-            "https://openai.com/waitlist/gpt-4-api\n"
+            f"[[[.WARNING]]]Model {model} not available for provided API key. Reverting.[[[.ENDWARNING]]]"
         )
         return "gpt-3.5-turbo-16k"
