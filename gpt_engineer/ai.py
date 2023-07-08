@@ -77,9 +77,9 @@ class AI:
             delta = chunk["choices"][0]["delta"]  # type: ignore
             msg = delta.get("content", "")
             chat.append(msg)
-        # reasoning = "".join(chat)
-        # print(f"[[[.REASONING]]]{reasoning}[[[.ENDREASONING]]]", end="")
-        # print()
+        reasoning = "".join(chat)
+        print(f"[[[.REASONING]]]{reasoning}[[[.ENDREASONING]]]", end="")
+        print()
         messages += [{"role": "assistant", "content": "".join(chat)}]
         # logger.debug(f"Chat completion finished: {messages}")
 
