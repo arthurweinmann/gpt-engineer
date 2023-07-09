@@ -177,7 +177,7 @@ def gen_code(ai: AI, dbs: DBs) -> List[dict]:
     to_files(messages[-1]["content"], dbs.workspace)
     return messages
 
-def print_end():
+def print_end(ai: AI, dbs: DBs):
     print("[[[.FINALEND]]]")
 
 def execute_entrypoint(ai: AI, dbs: DBs) -> List[dict]:
