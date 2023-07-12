@@ -68,7 +68,7 @@ def clarify(ai: AI, dbs: DBs) -> List[dict]:
 
         print()
         last = messages[-1]["content"]
-        user_input = input(f'[[[.ASK]]]{last}\nanswer in text, or "c" to move on\n[[[.ENDASK]]]')
+        user_input = input(f'[[[.ASK]]]{last}[[[.ENDASK]]]\n')
         print()
 
         if not user_input or user_input == "c":
@@ -239,6 +239,8 @@ def gen_entrypoint(ai: AI, dbs: DBs) -> List[dict]:
     regex = r"```\S*\n(.+?)```"
     matches = re.finditer(regex, messages[-1]["content"], re.DOTALL)
     dbs.workspace["run.sh"] = "\n".join(match.group(1) for match in matches)
+    print(f"[[[.REASONING]]]run.sh\n```bash\n{dbs.workspace["run.sh"]}\n```[[[.ENDREASONING]]]")
+    print()
     return messages
 
 
