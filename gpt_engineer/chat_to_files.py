@@ -40,3 +40,5 @@ def to_files(chat, workspace):
     files = parse_chat(chat)
     for file_name, file_content in files:
         workspace[file_name] = file_content
+        print(f"[[[.FILE]]]{file_name}\n```bash\n{file_content}\n```[[[.ENDFILE]]]", end="")
+        print()
