@@ -239,7 +239,8 @@ def gen_entrypoint(ai: AI, dbs: DBs) -> List[dict]:
     regex = r"```\S*\n(.+?)```"
     matches = re.finditer(regex, messages[-1]["content"], re.DOTALL)
     dbs.workspace["run.sh"] = "\n".join(match.group(1) for match in matches)
-    print(f"[[[.REASONING]]]run.sh\n```bash\n{dbs.workspace["run.sh"]}\n```[[[.ENDREASONING]]]")
+    tmp=dbs.workspace["run.sh"]
+    print(f"[[[.REASONING]]]run.sh\n```bash\n{tmp}\n```[[[.ENDREASONING]]]", end="")
     print()
     return messages
 
